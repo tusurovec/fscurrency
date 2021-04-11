@@ -14,11 +14,14 @@ class CurrenciesViewModel : ViewModel() {
     val state: LiveData<CurrenciesState> = _state
 
     fun loadCurrencies() {
-        repository?.getCurrencies { _state.value = CurrenciesState.Content(it) }
+        repository?.getCurrencies(
+            onSuccess = { _state.value = CurrenciesState.Content(it) },
+            onError = { proceedError() }
+        )
         _state.value = CurrenciesState.Loading
     }
 
-    private fun proceedError(throwable: Throwable) {
+    private fun proceedError() {
         _state.value = CurrenciesState.Error
     }
 }

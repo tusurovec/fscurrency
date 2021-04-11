@@ -16,9 +16,12 @@ class CurrencyRepository {
         const val BASE_URL = "https://www.cbr-xml-daily.ru"
     }
 
-    private var currencyList : List<Currency> = emptyList()
+    private var currencyList: List<Currency> = emptyList()
 
-    fun getCurrencies(onSuccess: (List<Currency>) -> Unit) {
+    fun getCurrencies(
+        onSuccess: (List<Currency>) -> Unit,
+        onError: () -> Unit
+    ) {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -29,6 +32,7 @@ class CurrencyRepository {
 
         call.enqueue(object : Callback<CurrencyResponse> {
             override fun onFailure(call: Call<CurrencyResponse>, t: Throwable) {
+                onError()
                 t.printStackTrace()
             }
 
