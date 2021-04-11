@@ -13,8 +13,7 @@
 4) показывается прогресс бар в момент получения данных
 <img width="366" alt="Снимок экрана 2021-04-11 в 14 49 36" src="https://user-images.githubusercontent.com/4588631/114296443-95fc8d00-9ad5-11eb-92e2-6ba46f6c99ab.png">
 
-
-Для работы с сетью в проекте используется библиотека Retrofit
+5) Для работы с сетью в проекте используется библиотека Retrofit
 
 dependencies {
 	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
